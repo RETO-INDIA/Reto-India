@@ -80,19 +80,14 @@ const MainCarousel = () => {
       <Slider {...settings}>
         {images.map((image, id) => (
           <>
-           <div key={id} className="banner h-[450px]  p-[5px] overflow-hidden w-full mx-auto cursor-pointer rounded-xl relative group">
+           <div key={id} className="banner h-[430px]  p-[5px] overflow-hidden w-[93%] mx-auto cursor-pointer rounded-xl relative group">
               {/* Image */}
               {image.src ? (
-  <img
-    src={image.src}
-    alt={image.name ? image.name : "Product Image"}
-    className="banner-image w-full object-cover rounded-xl group-hover:scale-105 duration-300 ease-linear"
-  />
-) : (
-  <div className="w-full h-[450px] flex items-center justify-center bg-gray-300 text-gray-700 text-lg font-semibold rounded-xl">
-    No Image Available
-  </div>
-)}
+                <img src={image.src} alt={image.name ? image.name : "Product Image"} className="banner-image w-full object-cover rounded-xl group-hover:scale-105 duration-300 ease-linear"/>) : (
+                <div className="w-full h-[450px] flex items-center justify-center bg-gray-300 text-gray-700 text-lg font-semibold rounded-xl">
+                          No Image Available
+                </div>
+               )}
 
               {/* Hover Effects */}
               <div className="absolute top-2 right-2 flex gap-2"></div>

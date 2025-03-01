@@ -1,117 +1,61 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createBrowserRouter, RouterProvider } from "react-router";
-import "./App.css";
-import AboutUs from "./components/About/AboutUs.jsx";
-import CartPage from "./components/CartPage/CartPage";
-import CheckoutPage from "./components/CheckOutPage/CheckoutPage";
-import Contact from "./components/Contact/Contact";
-import LandingPage from "./components/LandingPage/LandingPage";
+import { lazy, Suspense } from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import MainLayout from "./components/Layout/MainLayout";
-import Login from "./components/Login_Signup_Page/Login";
-import Signup from "./components/Login_Signup_Page/Signup";
-import OrderPage from "./components/OrderPage/OrderPage.jsx";
-import CardPaymentTemplate from "./components/PaymentPage/CardPaymentTemplate.jsx";
-import GPayPaymentTemplate from "./components/PaymentPage/GPayPaymentTemplate.jsx";
-import PaymentPage from "./components/PaymentPage/MainPaymentPage.jsx";
-import PhonepePaymentTemplate from "./components/PaymentPage/PhonePe.jsx";
-import UPIPaymentTemplate from "./components/PaymentPage/Upi.jsx";
-import Product from "./components/ProductPage/ProductPage.jsx";
-import ProductView from "./components/ProductView/ProductView";
-import TrackingPage from "./components/Track_order/TrackingPage";
-import SuccessPage from "./components/successPage/Success.jsx";
+import TitleUpdater from "./components/Title_Updater/TitleUpdater.jsx";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainLayout />,
-    children: [
-      {
-        path: "/",
-        element: <LandingPage />,
-      },
-      {
-        path: "/about",
-        element: <AboutUs />,
-      },
-      {
-        path: "/checkout",
-        element: <CheckoutPage />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-      {
-        path: "/product",
-        element: <Product />,
-      },
-      {
-        path: "product/:productId",
-        element: <ProductView />,
-      },
-      {
-        path: "/tracking",
-        element: <TrackingPage />,
-      },
-      {
-        path: "/cartPage",
-        element: <CartPage />,
-      },
-      {
-        path: "/auth",
-        children: [
-          {
-            path: "login",
-            element: <Login />,
-          },
-          {
-            path: "signup",
-            element: <Signup />,
-          },
-        ],
-      },
-      {
-        path: "/orderPage",
-        element: <OrderPage />,
-      },
+const LandingPage = lazy(() => import("./components/LandingPage/LandingPage"));
+const AboutUs = lazy(() => import("./components/About/AboutUs"));
+const CartPage = lazy(() => import("./components/CartPage/CartPage"));
+const CheckoutPage = lazy(() => import("./components/CheckOutPage/CheckoutPage"));
+const Contact = lazy(() => import("./components/Contact/Contact"));
+const Login = lazy(() => import("./components/Login_Signup_Page/Login"));
+const Signup = lazy(() => import("./components/Login_Signup_Page/Signup"));
+const OrderPage = lazy(() => import("./components/OrderPage/OrderPage"));
+const CardPaymentTemplate = lazy(() => import("./components/PaymentPage/CardPaymentTemplate"));
+const GPayPaymentTemplate = lazy(() => import("./components/PaymentPage/GPayPaymentTemplate"));
+const PaymentPage = lazy(() => import("./components/PaymentPage/MainPaymentPage"));
+const PhonepePaymentTemplate = lazy(() => import("./components/PaymentPage/PhonePe"));
+const UPIPaymentTemplate = lazy(() => import("./components/PaymentPage/Upi"));
+const Product = lazy(() => import("./components/ProductPage/ProductPage"));
+const ProductView = lazy(() => import("./components/ProductView/ProductView"));
+const SuccessPage = lazy(() => import("./components/successPage/Success"));
+const TrackingPage = lazy(() => import("./components/Track_order/TrackingPage"));
 
-      {
-        path: "/payment",
-        element: <PaymentPage />,
-      },
-      {
-        path: "/order/:orderId/success",
-        element: <SuccessPage />,
-      },
-      {
-        path: "/gpayPayment",
-        element: <GPayPaymentTemplate />,
-      },
-      {
-        path: "/phonepe",
-        element: <PhonepePaymentTemplate />,
-      },
-      {
-        path: "/upipay",
-        element: <UPIPaymentTemplate />,
-      },
-      {
-        path: "/card",
-        element: <CardPaymentTemplate />,
-      },
-    ],
-  },
-]);
+const queryClient = new QueryClient();
 
 function App() {
-  const queryClient = new QueryClient();
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router}></RouterProvider>
-        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-      </QueryClientProvider>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <TitleUpdater />
+        <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<MainLayout />}>
+              <Route index element={<LandingPage />} />
+              <Route path="about" element={<AboutUs />} />
+              <Route path="checkout" element={<CheckoutPage />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="product" element={<Product />} />
+              <Route path="product/:productId" element={<ProductView />} />
+              <Route path="tracking" element={<TrackingPage />} />
+              <Route path="cartPage" element={<CartPage />} />
+              <Route path="auth">
+                <Route path="login" element={<Login />} />
+                <Route path="signup" element={<Signup />} />
+              </Route>
+              <Route path="orderPage" element={<OrderPage />} />
+              <Route path="payment" element={<PaymentPage />} />
+              <Route path="order/:orderId/success" element={<SuccessPage />} />
+              <Route path="gpayPayment" element={<GPayPaymentTemplate />} />
+              <Route path="phonepe" element={<PhonepePaymentTemplate />} />
+              <Route path="upipay" element={<UPIPaymentTemplate />} />
+              <Route path="card" element={<CardPaymentTemplate />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </Router>
+    </QueryClientProvider>
   );
 }
 
