@@ -3,6 +3,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import XIcon from "@mui/icons-material/X";
+import { NavLink } from "react-router";
 import "./LandingPage.css";
 
 const LandingPage = () => {
@@ -118,18 +119,18 @@ const LandingPage = () => {
 
       {/* <!-- Social Media Icons --> */}
       <div className="social-icons">
-        <a href="#" target="_blank" rel="noopener noreferrer">
+        <NavLink to="https://x.com/RetoINDIA" target="_blank" rel="noopener noreferrer">
           <XIcon sx={{ fontSize: "2rem" }} />
-        </a>
-        <a href="#" target="_blank" rel="noopener noreferrer">
+        </NavLink>
+        <NavLink to="https://www.facebook.com/share/1FAkbBiRUA/" target="_blank" rel="noopener noreferrer">
           <FacebookIcon sx={{ fontSize: "2rem" }} />
-        </a>
-        <a href="#" target="_blank" rel="noopener noreferrer">
+        </NavLink>
+        <NavLink to="https://www.instagram.com/retoindia.official/?hl=en" target="_blank" rel="noopener noreferrer">
           <InstagramIcon sx={{ fontSize: "2rem" }} />
-        </a>
-        <a href="#" target="_blank" rel="noopener noreferrer">
+        </NavLink>
+        <NavLink to="https://www.linkedin.com/company/reto-india/?viewAsMember=true" target="_blank" rel="noopener noreferrer">
           <LinkedInIcon sx={{ fontSize: "2rem" }} />
-        </a>
+        </NavLink>
       </div>
     </div>
   );

@@ -43,6 +43,14 @@ body {
   list-style: none;
 }
 
+.nav-group ul li a.active {
+  background-color: #fac44b;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+
 .nav-links,
 .header-cta {
   font-family: "Inter", sans-serif;

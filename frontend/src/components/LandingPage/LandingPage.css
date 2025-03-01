@@ -153,7 +153,7 @@
   text-decoration: none;
 }
 .landing .social-icons a:hover {
-  color: #fd7e14;
+  transform: scale(1.1);
 }
 .landing .menu-toggle {
   display: none;

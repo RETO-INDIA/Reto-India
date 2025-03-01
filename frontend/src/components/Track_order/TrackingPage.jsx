@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import "./TrackingPage.css";
 import LottieAnimation from "../LottieAnimation/LottieAnimation";
@@ -116,10 +117,18 @@ export default function TrackingPage() {
         </div>
       </div>
       <div className="social-links">
-        <div><FaTwitter /></div>
-        <div><FaFacebook /></div>
-        <div><FaInstagram /></div>
-        <div><FaLinkedin /></div>
+        <NavLink to="https://x.com/RetoINDIA" target="_blank" rel="noopener noreferrer">
+          <XIcon sx={{ fontSize: "2rem" }} />
+        </NavLink>
+        <NavLink to="https://www.facebook.com/share/1FAkbBiRUA/" target="_blank" rel="noopener noreferrer">
+          <FacebookIcon sx={{ fontSize: "2rem" }} />
+        </NavLink>
+        <NavLink to="https://www.instagram.com/retoindia.official/?hl=en" target="_blank" rel="noopener noreferrer">
+          <InstagramIcon sx={{ fontSize: "2rem" }} />
+        </NavLink>
+        <NavLink to="https://www.linkedin.com/company/reto-india/?viewAsMember=true" target="_blank" rel="noopener noreferrer">
+          <LinkedInIcon sx={{ fontSize: "2rem" }} />
+        </NavLink>
       </div>
     </div>
   );
