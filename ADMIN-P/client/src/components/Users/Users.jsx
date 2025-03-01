@@ -73,7 +73,7 @@ const Users = (props) => {
               <tr key={user.userId} className="border-b hover:bg-gray-50">
                 <td className="py-3 px-4 text-wrap">{user.userId}</td>
                 <td className="py-3 px-4 text-wrap">{user.phoneNo}</td>
-                <td className="py-3 px-4">{user.fullname}</td>
+                <td className="py-3 px-4">{user.fullName}</td>
                 <td className="py-3 px-4">{user.email}</td>
                 <td className="py-3 px-4">
                   <span

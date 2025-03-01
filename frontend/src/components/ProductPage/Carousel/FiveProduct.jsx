@@ -1,5 +1,4 @@
-// import React from "react";
-import axios from 'axios';
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { IoMdHeartEmpty } from "react-icons/io";
@@ -11,15 +10,26 @@ import { toast, ToastContainer } from "react-toastify";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { addToCart } from "../../../Redux/CartSlice";
+import LottieAnimation from "../../LottieAnimation/LottieAnimation";
+import LoadingAnimation from "../../../Lottie/Animation_Loading.json"; 
+
 const ProductPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true); 
+
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/Product');
-      setProducts(response.data);
+      const response = await axios.get("http://localhost:3000/Product");
+
+      setTimeout(() => {
+        setProducts(response.data);
+        setLoading(false); 
+      }, 800); 
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
+      setLoading(false);
     }
   };
 
@@ -29,9 +39,9 @@ const ProductPage = () => {
 
   const settings = {
     dots: true,
-    infinite: products.length > 3, // Only enable infinite if there are more than 3 products
+    infinite: products.length > 3, 
     speed: 1000,
-    slidesToShow: Math.min(3, products.length), // Show fewer slides if there are fewer products
+    slidesToShow: Math.min(3, products.length), 
     slidesToScroll: Math.min(3, products.length),
     autoplay: true,
     autoplaySpeed: 3000,
@@ -56,7 +66,6 @@ const ProductPage = () => {
     ],
   };
 
-  const navigate = useNavigate();
   const handleAddToCart = (product) => {
     const authToken = localStorage.getItem("authToken");
     if (!authToken) {
@@ -70,6 +79,15 @@ const ProductPage = () => {
     toast("Item added Successfully");
     dispatch(addToCart(product));
   };
+
+  // Show animation while loading
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <LottieAnimation animationData={LoadingAnimation} width={150} height={150} />
+      </div>
+    );
+  }
 
   return (
     
