@@ -49,7 +49,7 @@ const SuccessPage = () => {
                         <tbody>
                             {paymentData.cartItems.map((item, index) => (
                                 <tr key={index} className="border">
-                                    <td className="p-2 border">{item.name}</td>
+                                    <td className="p-2 border">{item.title}</td>
                                     <td className="p-2 border">{item.quantity}</td>
                                     <td className="p-2 border">₹{item.price * item.quantity}</td>
                                 </tr>

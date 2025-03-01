@@ -60,7 +60,7 @@
 #unique-password {
   width: 100%;
   padding: 10px;
-  font-size: 18px;
+  font-size: 14px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
@@ -137,14 +137,26 @@
   color: #222;
   scale: 0.9;
 }
+.full-screen-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9); /* Light overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000;
+}
 
+.full-screen-animation {
+  width: 300px;
+  height: 300px;
+}
 @media screen and (max-width: 1024px) {
   .user-login {
     width: 100%;
-  }
-  #unique-email,
-  #unique-password {
-    font-size: 16px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -153,10 +165,6 @@
   }
   .unique-login-card {
     padding: 40px 0;
-  }
-  #unique-email,
-  #unique-password {
-    font-size: 15px;
   }
 }
 @media screen and (max-width: 430px) {
@@ -186,22 +194,12 @@
   .unique-google-login-btn {
     padding: 15px 15px 15px 7px;
     font-size: 13px;
-    margin-bottom: 1.5rem;
   }
   .user-login {
     width: 82%;
     font-size: 12px;
   }
   .unique-divider {
-    margin: 6px 0;
-  }
-}
-@media screen and (max-width: 376px) {
-  #unique-email,
-  #unique-password {
-    font-size: 12px;
-  }
-  .user-login {
-    gap: 4px;
+    margin: 14px 0;
   }
 }/*# sourceMappingURL=login.css.map */

@@ -20,7 +20,8 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-mongoose.connect('mongodb://localhost:27017/reto_india').then(() => console.log("Connected to MongoDB")).catch(err => console.error("Error connecting to MongoDB:", err));
+const mongo_url = process.env.MONGO_URL;
+mongoose.connect(mongo_url).then(() => console.log("Connected to MongoDB")).catch(err => console.error("Error connecting to MongoDB:", err));
 
 
 const storage = multer.diskStorage({

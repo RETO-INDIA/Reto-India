@@ -7,7 +7,7 @@ const multer = require("multer");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser")
-
+require('dotenv').config();
 const { v4: uuidv4 } = require("uuid");
 const UserOrdersInfo = require("./models/UserOrdersInfo");
 const Razorpay = require("razorpay");
@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // MongoDB connection URIs
-const MONGO_URL = "mongodb://localhost:27017/reto_india";
+const MONGO_URL = process.env.MONGO_URL;
 mongoose
   .connect(MONGO_URL)
   .then(() => { console.log("connected to reto_india DB") })
