@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -36,7 +37,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // MongoDB connection URIs
-const MONGO_URL = "mongodb://localhost:27017/reto_india";
+const MONGO_URL = process.env.MONGO_URL;
 mongoose
   .connect(MONGO_URL)
   .then(() => { console.log("connected to reto_india DB") })

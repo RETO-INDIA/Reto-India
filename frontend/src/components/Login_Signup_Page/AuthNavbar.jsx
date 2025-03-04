@@ -66,7 +66,7 @@ const Navbar = () => {
                 <li>
                   <NavLink to="/cartPage">
                     <div className="rounded-full relative">
-                      <FaCartShopping className="text-xl cursor-pointer" />
+                      <FaCartShopping className="text-xl cursor-pointer cart-icon" />
                       <p className="absolute -top-3 -right-3 text-lg text-red-600">
                         {totalQuantity}
                       </p>

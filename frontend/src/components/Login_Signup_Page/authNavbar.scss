@@ -300,3 +300,15 @@ body {
     top: -23rem;
   }
 }
+
+
+.nav-group ul li .nav-links.active {
+  background-color: #fac44b;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.cart-icon.active {
+  color: orange;
+}
