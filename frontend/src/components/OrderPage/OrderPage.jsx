@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { NavLink, useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const OrderPage = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const OrderPage = () => {
           return;
         }
   
-        const response = await axios.get("http://localhost:5000/OrderPage", {
+        const response = await axios.get("https://reto-india-backend.onrender.com/OrderPage", {
           headers: {
             Authorization: `Bearer ${token}` // Attach token in request headers
           }

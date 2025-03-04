@@ -70,7 +70,7 @@ const Carousel = ({ data }) => {
                     </div>
                     <div className="img_section flex w-full my-2 overflow-auto ">
                       <img
-                        src={`http://localhost:3000${ele.image}`}
+                        src={`https://reto-india-backend.onrender.com${ele.image}`}
                         alt="Uploaded Review"
                       />
                     </div>

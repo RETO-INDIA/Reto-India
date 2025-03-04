@@ -34,7 +34,7 @@ const Contact = () => {
 
     if (name && email && PhoneNo && Message) {
       try {
-        await axios.post("http://localhost:5000/ContactInfo", info);
+        await axios.post("https://reto-india-backend.onrender.com/ContactInfo", info);
         setPopupVisible(true);
       } catch (error) {
         console.error("An error occurred:", error);

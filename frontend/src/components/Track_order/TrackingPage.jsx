@@ -21,7 +21,7 @@ export default function TrackingPage() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/track-order?orderId=${orderId}&email=${email}`
+        `https://reto-india-backend.onrender.com/api/track-order?orderId=${orderId}&email=${email}`
       );
 
       const data = await response.json();
@@ -35,7 +35,7 @@ export default function TrackingPage() {
         setTrackingData(null);
         setShowTracking(false);
       }
-    } catch (err) {
+    } catch (error) {
       setError("Something went wrong. Please try again.");
       setTrackingData(null);
       setShowTracking(false);
