@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Sidebar.css";
+import "./SideBar.css";
 import Logo from "../../../img/logo.png";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { SideBarData } from "../../../Data/Data";
