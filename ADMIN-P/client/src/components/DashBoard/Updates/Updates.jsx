@@ -8,7 +8,7 @@ const Updates = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/UserOrdersInfo");
+            const response = await axios.get("https://reto-india-admin-backend.onrender.com/UserOrdersInfo");
             setOrders(response.data.slice(0, 3)); // Only take the first 3 orders
         } catch (error) {
             console.error("Error fetching data:", error);

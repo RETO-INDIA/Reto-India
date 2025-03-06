@@ -8,7 +8,7 @@ const Carousel = ({ slides }) => {
       {slides.map((slide, index) => (
         <img
           key={index}
-          src={`http://localhost:3000${slide}`}
+          src={`https://reto-india-admin-backend.onrender.com${slide}`}
           alt={`Slide ${index + 1}`}
           className="image object-cover px-2 py-2"
         />

@@ -27,7 +27,7 @@ const Product = () => {
   };
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/Product');
+      const response = await axios.get('https://reto-india-admin-backend.onrender.com/Product');
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);

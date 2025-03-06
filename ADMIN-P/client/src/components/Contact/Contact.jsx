@@ -6,7 +6,7 @@ const Contact = () => {
   const [contacts,setContact]=useState([]);
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/ContactInfo');
+      const response = await axios.get('https://reto-india-admin-backend.onrender.com/ContactInfo');
       setContact(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);

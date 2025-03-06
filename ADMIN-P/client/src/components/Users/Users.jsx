@@ -44,7 +44,7 @@ const Users = (props) => {
   // Handle user deletion
   const handleDelete = async (userId) => {
     try {
-      const response = await axios.delete(`http://localhost:3000/userSignupInfo/${userId}`);
+      const response = await axios.delete(`https://reto-india-admin-backend.onrender.com/userSignupInfo/${userId}`);
       console.log('User deleted', response);
       setUsers(users.filter(user => user.userId !== userId));
     } catch (error) {

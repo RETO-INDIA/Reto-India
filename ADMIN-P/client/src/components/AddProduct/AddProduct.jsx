@@ -54,7 +54,7 @@ const AddProduct = () => {
     });
 
     try {
-      await axios.post('http://localhost:3000/AddProduct', formData, {
+      await axios.post('https://reto-india-admin-backend.onrender.com/AddProduct', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       alert('Product added successfully!');

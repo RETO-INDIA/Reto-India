@@ -2,110 +2,11 @@ import React, { useEffect, useState } from 'react';
 import './Table.css';
 import axios from 'axios';
 const Table = () => {
-  // const products = [
-  //   {
-  //     image: 'https://via.placeholder.com/50',
-  //     title: 'Handmade Ceramic Vase',
-  //     material: 'Ceramic',
-  //     price: 1200,
-  //     quantity: 20,
-  //   },
-  //   {
-  //     image: 'https://via.placeholder.com/50',
-  //     title: 'Woven Bamboo Basket',
-  //     material: 'Bamboo',
-  //     price: 800,
-  //     quantity: 50,
-  //   },
-  //   {
-  //     image: 'https://via.placeholder.com/50',
-  //     title: 'Woven Bamboo Basket',
-  //     material: 'Bamboo',
-  //     price: 800,
-  //     quantity: 50,
-  //   },
-  //   {
-  //     image: 'https://via.placeholder.com/50',
-  //     title: 'Handmade Ceramic Vase',
-  //     material: 'Ceramic',
-  //     price: 1200,
-  //     quantity: 20,
-  //   },
-  //   {
-  //     image: 'https://via.placeholder.com/50',
-  //     title: 'Woven Bamboo Basket',
-  //     material: 'Bamboo',
-  //     price: 800,
-  //     quantity: 50,
-  //   },
-  //   {
-  //     image: 'https://via.placeholder.com/50',
-  //     title: 'Woven Bamboo Basket',
-  //     material: 'Bamboo',
-  //     price: 800,
-  //     quantity: 50,
-  //   },
-  //   {
-  //     image: 'https://via.placeholder.com/50',
-  //     title: 'Handmade Ceramic Vase',
-  //     material: 'Ceramic',
-  //     price: 1200,
-  //     quantity: 20,
-  //   },
-  //   {
-  //     image: 'https://via.placeholder.com/50',
-  //     title: 'Woven Bamboo Basket',
-  //     material: 'Bamboo',
-  //     price: 800,
-  //     quantity: 50,
-  //   },
-  //   {
-  //     image: 'https://via.placeholder.com/50',
-  //     title: 'Woven Bamboo Basket',
-  //     material: 'Bamboo',
-  //     price: 800,
-  //     quantity: 50,
-  //   },
-  //   {
-  //     image: 'https://via.placeholder.com/50',
-  //     title: 'Handmade Ceramic Vase',
-  //     material: 'Ceramic',
-  //     price: 1200,
-  //     quantity: 20,
-  //   },
-  //   {
-  //     image: 'https://via.placeholder.com/50',
-  //     title: 'Woven Bamboo Basket',
-  //     material: 'Bamboo',
-  //     price: 800,
-  //     quantity: 50,
-  //   },
-  //   {
-  //     image: 'https://via.placeholder.com/50',
-  //     title: 'Woven Bamboo Basket',
-  //     material: 'Bamboo',
-  //     price: 800,
-  //     quantity: 50,
-  //   },
-  //   {
-  //     image: 'https://via.placeholder.com/50',
-  //     title: 'Hand-Painted Wooden Coasters (Set of 4)',
-  //     material: 'Wood',
-  //     price: 600,
-  //     quantity: 30,
-  //   },
-  //   {
-  //     image: 'https://via.placeholder.com/50',
-  //     title: 'Macrame Wall Hanging',
-  //     material: 'Cotton Rope',
-  //     price: 1500,
-  //     quantity: 10,
-  //   },
-  // ];
+ 
   const [products, setProducts] = useState([]);
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/Product');
+      const response = await axios.get('https://reto-india-admin-backend.onrender.com/Product');
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);

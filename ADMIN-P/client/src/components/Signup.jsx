@@ -37,7 +37,7 @@ const Signup = () => {
     }
 
     try {
-      const url = 'http://localhost:3000/auth/signup';
+      const url = 'https://reto-india-admin-backend.onrender.com/auth/signup';
       const response = await fetch(url, {
         method: 'POST',
         headers: {
