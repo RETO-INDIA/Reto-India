@@ -26,7 +26,7 @@ const Order = ({ text, limit }) => {
   const handleDelete = async (orderId) => {
     if (window.confirm("Are you sure you want to delete this order?")) {
       try {
-        await axios.delete(`http://localhost:3000/UserOrdersInfo/${orderId}`);
+        await axios.delete(`https://reto-india-admin-backend.onrender.com/UserOrdersInfo/${orderId}`);
         setOrders(orders.filter((order) => order._id !== orderId));
       } catch (error) {
         console.error("Error deleting order:", error);
@@ -36,7 +36,7 @@ const Order = ({ text, limit }) => {
 
   const handleStatusChange = async (orderId, itemId, newStatus) => {
     try {
-      await axios.put(`http://localhost:3000/UserOrdersInfo/${orderId}/update`, {
+      await axios.put(`https://reto-india-admin-backend.onrender.com:3000/UserOrdersInfo/${orderId}/update`, {
         itemId,
         Status: newStatus,
       });
@@ -64,7 +64,7 @@ const Order = ({ text, limit }) => {
         : selectedLocations[itemId];
     if (!location) return;
     try {
-      await axios.put(`http://localhost:3000/UserOrdersInfo/${orderId}/addLocation`, {
+      await axios.put(`https://reto-india-admin-backend.onrender.com/UserOrdersInfo/${orderId}/addLocation`, {
         itemId,
         location,
       });

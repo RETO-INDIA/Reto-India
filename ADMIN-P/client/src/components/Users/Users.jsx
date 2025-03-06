@@ -9,7 +9,7 @@ const Users = (props) => {
   // Fetch data from the backend
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/userSignupInfo");
+      const response = await axios.get("https://reto-india-admin-backend.onrender.com/userSignupInfo");
       setUsers(response.data);
       console.log("Fetched Users:", response.data);
     } catch (error) {
@@ -25,7 +25,7 @@ const Users = (props) => {
   const handleStatusChange = async (userId, newStatus) => {
     try {
       // Update the backend
-      const response = await axios.put(`http://localhost:3000/userSignupInfo/${userId}`, {
+      const response = await axios.put(`https://reto-india-admin-backend.onrender.com/userSignupInfo/${userId}`, {
         status: newStatus,
       });
       console.log('Status updated:', response.data);

@@ -62,7 +62,7 @@ const Product = () => {
 
   const handleDelete = async (productId) => {
     try {
-      const response = await axios.delete(`http://localhost:3000/Product/${productId}`);
+      const response = await axios.delete(`https://reto-india-admin-backend.onrender.com/Product/${productId}`);
       console.log('Product deleted', response);
       setProducts(products.filter(product => product._id !== productId));
     } catch (error) {
@@ -91,7 +91,7 @@ const Product = () => {
     try {
     
       const response = await axios.put(
-        `http://localhost:3000/ProductUpdate/${productId}`,
+        `http://:3000/ProductUpdate/${productId}`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } } 
       );
@@ -132,7 +132,7 @@ const Product = () => {
               <tr key={index} className="border-b hover:bg-gray-50">
                 <td className="py-3 px-4">
                   <img
-                    src={`http://localhost:3000${product.image1}`}
+                    src={`https://reto-india-admin-backend.onrender.com${product.image1}`}
                     alt="Product"
                     className="h-12 w-12 rounded-full object-cover cursor-pointer"
                     onClick={() => handleImageClick(product)} 
@@ -185,7 +185,7 @@ const Product = () => {
                       <img
                         src={
                           typeof update.image1 === "string"
-                            ? `http://localhost:3000${update.image1}` // For existing image path
+                            ? `https://reto-india-admin-backend.onrender.com:3000${update.image1}` // For existing image path
                             : URL.createObjectURL(update.image1)     // For newly selected file
                         }
                         alt="Preview 1"
@@ -213,7 +213,7 @@ const Product = () => {
                       <img
                         src={
                           typeof update.image2 === "string"
-                            ? `http://localhost:3000${update.image2}` // For existing image path
+                            ? `https://reto-india-admin-backend.onrender.com${update.image2}` // For existing image path
                             : URL.createObjectURL(update.image2)     // For newly selected file
                         }
                         alt="Preview 1"
@@ -241,7 +241,7 @@ const Product = () => {
                       <img
                         src={
                           typeof update.image3 === "string"
-                            ? `http://localhost:3000${update.image3}` // For existing image path
+                            ? `https://reto-india-admin-backend.onrender.com${update.image3}` // For existing image path
                             : URL.createObjectURL(update.image3)     // For newly selected file
                         }
                         alt="Preview 1"
@@ -269,7 +269,7 @@ const Product = () => {
                       <img
                         src={
                           typeof update.image4 === "string"
-                            ? `http://localhost:3000${update.image4}` // For existing image path
+                            ? `https://reto-india-admin-backend.onrender.com${update.image4}` // For existing image path
                             : URL.createObjectURL(update.image4)     // For newly selected file
                         }
                         alt="Preview 1"
@@ -297,7 +297,7 @@ const Product = () => {
                       <img
                         src={
                           typeof update.image5 === "string"
-                            ? `http://localhost:3000${update.image5}` // For existing image path
+                            ? `https://reto-india-admin-backend.onrender.com${update.image5}` // For existing image path
                             : URL.createObjectURL(update.image5)     // For newly selected file
                         }
                         alt="Preview 1"

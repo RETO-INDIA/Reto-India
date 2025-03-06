@@ -22,7 +22,7 @@ const Customers = () => {
 
     const handleDelete = async (customerId) => {
         try {
-          const response = await axios.delete(`http://localhost:3000/Customers/${customerId}`);
+          const response = await axios.delete(`https://reto-india-admin-backend.onrender.com/Customers/${customerId}`);
           console.log('Customer deleted', response);
           setCustomers(customers.filter(customer => customer._id !== customerId));
         } catch (error) {
