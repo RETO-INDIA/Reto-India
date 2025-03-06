@@ -116,12 +116,12 @@ const Login = () => {
               Login
             </button>
 
-            <div className='text-sm text-center text-gray-600'>
+            {/* <div className='text-sm text-center text-gray-600'>
               <span>Don't have an account? </span>
               <Link to='/signup' className='font-medium text-blue-600 hover:text-blue-500'>
                 Signup
               </Link>
-            </div>
+            </div> */}
           </form>
 
           <ToastContainer />

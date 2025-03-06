@@ -91,7 +91,7 @@ const Product = () => {
     try {
     
       const response = await axios.put(
-        `http://:3000/ProductUpdate/${productId}`,
+        `https://reto-india-admin-backend.onrender.com/ProductUpdate/${productId}`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } } 
       );
