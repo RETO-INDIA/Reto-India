@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { NavLink } from "react-router-dom"; // Corrected import
 import "./TrackingPage.css";
 import LottieAnimation from "../LottieAnimation/LottieAnimation";
 import TrackAnimation from "../../Lottie/Animation_track.json";
@@ -19,11 +20,11 @@ export default function TrackingPage() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/track-order?orderId=${orderId}&email=${email}`
+        `https://reto-india-backend.onrender.com/api/track-order?orderId=${orderId}&email=${email}`
       );
 
       const data = await response.json();
-      console.log("API Response:", data); 
+      console.log("API Response:", data);
 
       setTimeout(() => {
         if (response.ok && data) {
@@ -36,14 +37,13 @@ export default function TrackingPage() {
         }
         setLoading(false);
       }, 2000);
-      
     } catch (err) {
       setTimeout(() => {
         setError("Something went wrong. Please try again.");
         setTrackingData(null);
         setShowTracking(false);
         setLoading(false);
-      }, 2000); 
+      }, 2000);
     }
   }
 
@@ -59,15 +59,25 @@ export default function TrackingPage() {
             <div className="replace_dmd_box">
               {trackingData ? (
                 <>
-                  <div className="divtext"><strong>Order ID:</strong> {trackingData.orderId}</div>
-                  <div className="divtext"><strong>Status:</strong> {trackingData.status}</div>
-                  <div className="divtext"><strong>Title:</strong> {trackingData.title}</div>
-                  <div className="divtext"><strong>Price:</strong> ₹{trackingData.price}</div>
-                  
-                  {trackingData.trackLocations && trackingData.trackLocations.length > 0 ? (
+                  <div className="divtext">
+                    <strong>Order ID:</strong> {trackingData.orderId}
+                  </div>
+                  <div className="divtext">
+                    <strong>Status:</strong> {trackingData.status}
+                  </div>
+                  <div className="divtext">
+                    <strong>Title:</strong> {trackingData.title}
+                  </div>
+                  <div className="divtext">
+                    <strong>Price:</strong> ₹{trackingData.price}
+                  </div>
+
+                  {trackingData.trackLocations &&
+                  trackingData.trackLocations.length > 0 ? (
                     trackingData.trackLocations.map((loc, index) => (
                       <div key={index} className="divtext">
-                        <strong>Product has reached:</strong> {loc.location} (at {new Date(loc.timestamp).toLocaleString()})
+                        <strong>Product has reached:</strong> {loc.location} (at{" "}
+                        {new Date(loc.timestamp).toLocaleString()})
                       </div>
                     ))
                   ) : (
@@ -116,10 +126,35 @@ export default function TrackingPage() {
         </div>
       </div>
       <div className="social-links">
-        <div><FaTwitter /></div>
-        <div><FaFacebook /></div>
-        <div><FaInstagram /></div>
-        <div><FaLinkedin /></div>
+        {/* Social Media Icons with NavLink */}
+        <NavLink
+          to="https://x.com/RetoINDIA"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaTwitter />
+        </NavLink>
+        <NavLink
+          to="https://www.facebook.com/share/1FAkbBiRUA/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaFacebook />
+        </NavLink>
+        <NavLink
+          to="https://www.instagram.com/retoindia.official/?hl=en"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaInstagram />
+        </NavLink>
+        <NavLink
+          to="https://www.linkedin.com/company/reto-india/?viewAsMember=true"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaLinkedin />
+        </NavLink>
       </div>
     </div>
   );

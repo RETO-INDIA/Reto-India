@@ -17,7 +17,7 @@ const Review = () => {
   const [data, setData] = useState([]);
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/Review");
+      const response = await axios.get("https://reto-india-backend.onrender.com/Review");
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -69,7 +69,7 @@ const Review = () => {
         formData.append("image", fileInput.files[0]);
       }
 
-      await axios.post("http://localhost:5000/ReviewText", formData, {
+      await axios.post("https://reto-india-backend.onrender.com/ReviewText", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

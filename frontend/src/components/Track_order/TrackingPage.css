@@ -198,8 +198,8 @@ textarea::placeholder {
   transition: transform 0.5s ease-in-out;
 }
 
-.social-links div:hover {
-  transform: rotateY(180deg) scale(1.2);
+.social-links a:hover {
+  transform: scale(1.1);
 }
 
 .tracking-btn {

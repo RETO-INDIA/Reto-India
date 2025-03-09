@@ -1,13 +1,9 @@
 import StarRateIcon from "@mui/icons-material/StarRate";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import "./Product.css";
-import Review from "./Reviews/Review";
 
 const ProductView = () => {
   const { productId } = useParams();
@@ -35,7 +31,7 @@ const ProductView = () => {
             {[product.image1, product.image2, product.image3, product.image4, product.image5].map((img, index) => (
               <div key={index} className="ProdSection flex justify-center items-center">
                 <img
-                  src={`http://localhost:3000${img}`}
+                  src={`https://reto-india-admin-backend.onrender.com${img}`}
                   alt={`product-${index}`}
                   className="w-full h-full object-cover rounded p-2"
                 />

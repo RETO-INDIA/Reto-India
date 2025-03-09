@@ -145,19 +145,6 @@ body {
     font-weight: 500;
     font-size: 12px;
   }
-
-  /* .res-nav {
-      display: flex;
-    } */
-
-  .close-nav {
-    display: none;
-    /* Hide the cross icon by default */
-  }
-
-  /* .nav-container-auth.open .close-nav { */
-  /* display: block; Show the cross icon only when menu is open */
-  /* } */
 }
 
 @media only screen and (max-width: 974px) {
@@ -205,12 +192,12 @@ body {
     padding: 10px;
     gap: 15px;
     height: 130vh;
-    z-index: 1;
+    z-index: 11;
   }
 
   .nav-group ul li {
     position: relative;
-    top: -25rem;
+    top: -23rem;
   }
 
   .nav-group ul li a {
@@ -299,4 +286,16 @@ body {
   .nav-group ul li {
     top: -23rem;
   }
+}
+
+
+.nav-group ul li .nav-links.active {
+  background-color: #fac44b;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.cart-icon.active {
+  color: orange;
 }

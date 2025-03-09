@@ -3,14 +3,17 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { IconButton } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { signUpUser } from "../../API/api";
 import LottieAnimation from "../LottieAnimation/LottieAnimation"; // Import the reusable Lottie component
 import ArtisticAnimation from "../../Lottie/Animation_artistic_3.json"; // Import the POST animation
+import { useAuth } from "../../Context/AuthContext"; // Import the useAuth hook
 import "./Signup.css";
 
 const Signup = () => {
+  const { login } = useAuth(); // Use the login function from AuthContext
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     fullName: "",
     email: "",
@@ -34,11 +37,25 @@ const Signup = () => {
     mutationFn: (user) => signUpUser(user),
     onSuccess: (response) => {
       console.log("Signup successful - onSuccess triggered", response);
+
       // Show animation for at least 2 seconds
       setTimeout(() => {
         setShowAnimation(false); // Hide animation after 2 seconds
         setUser({ fullName: "", email: "", password: "", phoneNo: "" }); // Reset form
+
+        if (!response.token) {
+          console.error("Signup response missing required fields:", response);
+          toast.error("Signup failed. Please try again.", { position: "top-center" });
+          return;
+        }
+
         toast.success("Signup successful", { position: "top-center" });
+
+        login(response.token, { fullName: user.fullName, email: user.email });
+
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       }, 2000);
     },
     onError: (error) => {

@@ -173,7 +173,7 @@ const CheckoutPage = () => {
 
           // Verify payment
           try {
-            const verifyResponse = await fetch("http://localhost:5000/verify-payment", {
+            const verifyResponse = await fetch("https://reto-india-backend.onrender.com/verify-payment", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({

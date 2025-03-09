@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -23,7 +24,7 @@ const generateShortId = () => crypto.randomBytes(4).toString("hex"); // 8-char u
 const app = express();
 // Configure CORS
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://reto-india.onrender.com",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
@@ -64,6 +65,7 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname));
   }
 });
+
 const upload = multer({ storage: storage });
 app.get('/Product', async (req, res) => {
   try {

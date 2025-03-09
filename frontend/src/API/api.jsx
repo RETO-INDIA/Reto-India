@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://reto-india-backend.onrender.com/",
   headers: {
     "Content-Type": "application/json",
   },
@@ -66,7 +66,7 @@ export const loginUser = async (userData) => {
 };
 
 export const createOrder = async (orderData) => {
-  const response = await fetch("http://localhost:5000/create-order", {
+  const response = await fetch("https://reto-india-backend.onrender.com/create-order", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

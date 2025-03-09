@@ -2,12 +2,12 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { FaCartShopping } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import toggleMenu from "../../public/js/navBar";
 import "./Navbar.css";
 import ProgressBar from "./ProgressBar/ProgressBar";
-import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);

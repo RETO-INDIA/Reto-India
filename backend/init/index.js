@@ -3,7 +3,7 @@ const sampleProduct = require("./data");
 const Product = require("../models/ProductView");
 const AllProduct = require("../models/AllProduct");
 
-const mongoURL = "mongodb://localhost:27017/reto_india";
+const mongoURL = process.env.MONGO_URL;
 async function main() {
     try {
         await mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true });

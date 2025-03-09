@@ -4,6 +4,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import XIcon from "@mui/icons-material/X";
 import axios from "axios";
 import { useState } from "react";
+import { NavLink } from "react-router";
 import ModalCard from "../ModalCard/ModalCard";
 import "./Contact.css";
 import ContactI from "./assets/Contact.png";
@@ -33,7 +34,7 @@ const Contact = () => {
 
     if (name && email && PhoneNo && Message) {
       try {
-        await axios.post("http://localhost:5000/ContactInfo", info);
+        await axios.post("https://reto-india-backend.onrender.com/ContactInfo", info);
         setPopupVisible(true);
       } catch (error) {
         console.error("An error occurred:", error);
@@ -107,18 +108,20 @@ const Contact = () => {
         </div>
       </div>
       <div className="contact-social-icons">
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          <XIcon sx={{ fontSize: "1.8rem" }} />
-        </a>
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          <FacebookIcon sx={{ fontSize: "1.8rem" }} />
-        </a>
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          <InstagramIcon sx={{ fontSize: "1.8rem" }} />
-        </a>
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          <LinkedInIcon sx={{ fontSize: "1.8rem" }} />
-        </a>
+     
+        <NavLink to="https://x.com/RetoINDIA" target="_blank" rel="noopener noreferrer">
+          <XIcon sx={{ fontSize: "2rem" }} />
+        </NavLink>
+        <NavLink to="https://www.facebook.com/share/1FAkbBiRUA/" target="_blank" rel="noopener noreferrer">
+          <FacebookIcon sx={{ fontSize: "2rem" }} />
+        </NavLink>
+        <NavLink to="https://www.instagram.com/retoindia.official/?hl=en" target="_blank" rel="noopener noreferrer">
+          <InstagramIcon sx={{ fontSize: "2rem" }} />
+        </NavLink>
+        <NavLink to="https://www.linkedin.com/company/reto-india/?viewAsMember=true" target="_blank" rel="noopener noreferrer">
+          <LinkedInIcon sx={{ fontSize: "2rem" }} />
+        </NavLink>
+     
       </div>
 
       <ModalCard
