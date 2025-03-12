@@ -14,6 +14,10 @@
   /* 31-12-2024 */
   /* //......................................  */
 }
+.landing{
+  height: 88vh;
+  align-content: center;
+}
 .landing .css-r0vxuw-MuiSvgIcon-root {
   font-size: 2.1rem;
 }
@@ -428,6 +432,7 @@
       margin-left: 20px;
       margin-top: 70px;
     } */
+
   }
   .landing .namaste-head {
     display: flex;
@@ -450,6 +455,13 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .landing{
+        height: max-content; 
+  }
+}
+
 @media screen and (min-width: 769px) {
   .landing .logo-sm {
     display: none;
@@ -601,6 +613,7 @@
   }
   .landing .btn-2 {
     width: 260px;
+    height: fit-content;
   }
   .landing main h1 {
     font-size: 48px;
@@ -615,7 +628,17 @@
     padding: 10px;
   }
 }
+
+@media screen and (max-width: 390px){
+  .landing{
+    height: 87vh;
+  }
+}
+
 @media screen and (max-width: 320px) {
+  .landing{
+    height: 87vh;
+  }
   .landing .css-r0vxuw-MuiSvgIcon-root {
     font-size: 1.7rem;
   }
