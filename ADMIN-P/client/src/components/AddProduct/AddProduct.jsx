@@ -112,7 +112,7 @@ const AddProduct = () => {
             type="checkbox"
             checked={isTrending}
             onChange={handleToggle}
-            className="sr-only"
+            className="sr-only peer"
           />
           <div className="w-11 h-6 bg-gray-200 rounded-full transition-all duration-200 ease-in-out peer-checked:bg-blue-500"></div>
           <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all duration-200 ease-in-out peer-checked:translate-x-5"></div>
