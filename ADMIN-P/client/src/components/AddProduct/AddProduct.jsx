@@ -81,9 +81,10 @@ const AddProduct = () => {
     }
   };
 
-  // Reset form when toggle changes
-  const handleToggle = () => {
-    setIsTrending((prev) => !prev);
+  // Handle radio button change
+  const handleRadioChange = (e) => {
+    const { value } = e.target;
+    setIsTrending(value === 'trending');
     setData({
       image1: null,
       image2: null,
@@ -104,20 +105,28 @@ const AddProduct = () => {
     <div className="form w-full p-2 h-auto overflow-auto mx-auto bg-white">
       <h1 className="text-2xl font-bold text-gray-800 mb-5">Add New Product</h1>
 
-      {/* Toggle Switch */}
+      {/* Radio Buttons */}
       <div className="flex items-center mb-5">
-        <span className="mr-2 text-gray-700">Default</span>
-        <label className="relative inline-flex items-center cursor-pointer">
+        <label className="mr-4">
           <input
-            type="checkbox"
-            checked={isTrending}
-            onChange={handleToggle}
-            className="sr-only peer"
+            type="radio"
+            value="default"
+            checked={!isTrending}
+            onChange={handleRadioChange}
+            className="mr-2"
           />
-          <div className="w-11 h-6 bg-gray-200 rounded-full transition-all duration-200 ease-in-out peer-checked:bg-blue-500"></div>
-          <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all duration-200 ease-in-out peer-checked:translate-x-5"></div>
+          Default
         </label>
-        <span className="ml-2 text-gray-700">Trending Products</span>
+        <label>
+          <input
+            type="radio"
+            value="trending"
+            checked={isTrending}
+            onChange={handleRadioChange}
+            className="mr-2"
+          />
+          Trending Products
+        </label>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-3" encType="multipart/form-data">
