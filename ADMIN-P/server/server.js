@@ -10,6 +10,7 @@ var ContactInfo = require('./models/ContactInfo');
 const Customer = require('./models/Customer');
 const UserOrdersInfo = require('./models/UserOrdersInfo');
 const userSignUpInfo = require("./models/signup");
+const TrendingProduct = require('./models/TrendingProduct');
 const AuthRouter = require('./Routes/AuthRouter');
 const fs = require('fs');
 require('dotenv').config();
@@ -42,6 +43,14 @@ app.use('/auth',AuthRouter);
 app.get('/Product', async (req, res) => {
     try {
         const product = await AddProduct.find();
+        res.json(product);
+    } catch (error) {
+        console.error("Error fetching product:", error);
+    }
+});
+app.get('/TrendingProduct', async (req, res) => {
+    try {
+        const product = await TrendingProduct.find();
         res.json(product);
     } catch (error) {
         console.error("Error fetching product:", error);
@@ -282,6 +291,40 @@ app.post('/AddProduct',
             }
 
             const newProduct = await AddProduct.create({
+                ...imagePaths,
+                title: req.body.title,
+                price: req.body.price,
+                discounted_price: req.body.discounted_price,
+                discount_percentage: req.body.discount_percentage,
+                material: req.body.material,
+                quantity: req.body.quantity,
+                description: req.body.description,
+            });
+
+            res.json({ message: 'New Product Added Successfully', newProduct });
+        } catch (error) {
+            console.error('Error adding product:', error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    }
+);
+app.post('/TrendingProduct',
+    upload.fields([
+        { name: 'image1', maxCount: 1 },
+        { name: 'image2', maxCount: 1 },
+        { name: 'image3', maxCount: 1 },
+       
+    ]),
+    async (req, res) => {
+        try {
+            const imagePaths = {};
+            for (let i = 1; i <= 3; i++) {
+                if (req.files[`image${i}`]) {
+                    imagePaths[`image${i}`] = `/uploads/${req.files[`image${i}`][0].filename}`;
+                }
+            }
+
+            const newProduct = await TrendingProduct.create({
                 ...imagePaths,
                 title: req.body.title,
                 price: req.body.price,

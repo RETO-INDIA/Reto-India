@@ -4,6 +4,7 @@ import axios from 'axios';
 import ImageIcon from '@mui/icons-material/Image';
 
 const AddProduct = () => {
+  const [isTrending, setIsTrending] = useState(false); // Toggle state
   const [data, setData] = useState({
     image1: null,
     image2: null,
@@ -19,12 +20,9 @@ const AddProduct = () => {
     description: '',
   });
 
-  const inputRef1 = useRef();
-  const inputRef2 = useRef();
-  const inputRef3 = useRef();
-  const inputRef4 = useRef();
-  const inputRef5 = useRef();
+  const inputRefs = [useRef(), useRef(), useRef(), useRef(), useRef()];
 
+  // Handle image change
   const handleImageChange = (e, imageKey) => {
     const file = e.target.files[0];
     if (file) {
@@ -35,6 +33,7 @@ const AddProduct = () => {
     }
   };
 
+  // Handle input change
   const handleChange = (e) => {
     const { id, value } = e.target;
     setData((prevState) => ({
@@ -43,18 +42,23 @@ const AddProduct = () => {
     }));
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
     Object.keys(data).forEach((key) => {
-      if (data[key]) {
+      if (data[key] && (isTrending ? !key.startsWith('image4') : true)) {
         formData.append(key, data[key]);
       }
     });
 
     try {
-      await axios.post('https://reto-india-admin-backend.onrender.com/AddProduct', formData, {
+      const endpoint = isTrending
+        ? 'https://reto-india-admin-backend.onrender.com/TrendingProduct'
+        : 'https://reto-india-admin-backend.onrender.com/AddProduct';
+
+      await axios.post(endpoint, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       alert('Product added successfully!');
@@ -77,9 +81,45 @@ const AddProduct = () => {
     }
   };
 
+  // Reset form when toggle changes
+  const handleToggle = () => {
+    setIsTrending((prev) => !prev);
+    setData({
+      image1: null,
+      image2: null,
+      image3: null,
+      image4: null,
+      image5: null,
+      title: '',
+      price: '',
+      discounted_price: '',
+      discount_percentage: '',
+      material: '',
+      quantity: 0,
+      description: '',
+    });
+  };
+
   return (
     <div className="form w-full p-2 h-auto overflow-auto mx-auto bg-white">
       <h1 className="text-2xl font-bold text-gray-800 mb-5">Add New Product</h1>
+
+      {/* Toggle Switch */}
+      <div className="flex items-center mb-5">
+        <span className="mr-2 text-gray-700">Default</span>
+        <label className="relative inline-flex items-center cursor-pointer">
+          <input
+            type="checkbox"
+            checked={isTrending}
+            onChange={handleToggle}
+            className="sr-only"
+          />
+          <div className="w-11 h-6 bg-gray-200 rounded-full transition-all duration-200 ease-in-out peer-checked:bg-blue-500"></div>
+          <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all duration-200 ease-in-out peer-checked:translate-x-5"></div>
+        </label>
+        <span className="ml-2 text-gray-700">Trending Products</span>
+      </div>
+
       <form onSubmit={handleSubmit} className="space-y-3" encType="multipart/form-data">
         <label className="font-medium text-gray-700" htmlFor="images">
           Images
@@ -92,18 +132,18 @@ const AddProduct = () => {
                 src={URL.createObjectURL(data.image1)}
                 alt="Preview 1"
                 className="imgL cursor-pointer w-16 h-16"
-                onClick={() => inputRef1.current.click()}
+                onClick={() => inputRefs[0].current.click()}
               />
             ) : (
               <ImageIcon
                 className="imgL cursor-pointer w-16 h-16"
-                onClick={() => inputRef1.current.click()}
+                onClick={() => inputRefs[0].current.click()}
               />
             )}
             <input
               type="file"
               accept="image/*"
-              ref={inputRef1}
+              ref={inputRefs[0]}
               style={{ display: 'none' }}
               onChange={(e) => handleImageChange(e, 'image1')}
             />
@@ -116,18 +156,18 @@ const AddProduct = () => {
                 src={URL.createObjectURL(data.image2)}
                 alt="Preview 2"
                 className="imgL cursor-pointer w-16 h-16"
-                onClick={() => inputRef2.current.click()}
+                onClick={() => inputRefs[1].current.click()}
               />
             ) : (
               <ImageIcon
                 className="imgL cursor-pointer w-16 h-16"
-                onClick={() => inputRef2.current.click()}
+                onClick={() => inputRefs[1].current.click()}
               />
             )}
             <input
               type="file"
               accept="image/*"
-              ref={inputRef2}
+              ref={inputRefs[1]}
               style={{ display: 'none' }}
               onChange={(e) => handleImageChange(e, 'image2')}
             />
@@ -140,71 +180,77 @@ const AddProduct = () => {
                 src={URL.createObjectURL(data.image3)}
                 alt="Preview 3"
                 className="imgL cursor-pointer w-16 h-16"
-                onClick={() => inputRef3.current.click()}
+                onClick={() => inputRefs[2].current.click()}
               />
             ) : (
               <ImageIcon
                 className="imgL cursor-pointer w-16 h-16"
-                onClick={() => inputRef3.current.click()}
+                onClick={() => inputRefs[2].current.click()}
               />
             )}
             <input
               type="file"
               accept="image/*"
-              ref={inputRef3}
+              ref={inputRefs[2]}
               style={{ display: 'none' }}
               onChange={(e) => handleImageChange(e, 'image3')}
             />
           </div>
 
-          {/* Image 4 */}
-          <div>
-            {data.image4 ? (
-              <img
-                src={URL.createObjectURL(data.image4)}
-                alt="Preview 4"
-                className="imgL cursor-pointer w-16 h-16"
-                onClick={() => inputRef4.current.click()}
+          {/* Image 4 (only for Default) */}
+          {!isTrending && (
+            <div>
+              {data.image4 ? (
+                <img
+                  src={URL.createObjectURL(data.image4)}
+                  alt="Preview 4"
+                  className="imgL cursor-pointer w-16 h-16"
+                  onClick={() => inputRefs[3].current.click()}
+                />
+              ) : (
+                <ImageIcon
+                  className="imgL cursor-pointer w-16 h-16"
+                  onClick={() => inputRefs[3].current.click()}
+                />
+              )}
+              <input
+                type="file"
+                accept="image/*"
+                ref={inputRefs[3]}
+                style={{ display: 'none' }}
+                onChange={(e) => handleImageChange(e, 'image4')}
               />
-            ) : (
-              <ImageIcon
-                className="imgL cursor-pointer w-16 h-16"
-                onClick={() => inputRef4.current.click()}
-              />
-            )}
-            <input
-              type="file"
-              accept="image/*"
-              ref={inputRef4}
-              style={{ display: 'none' }}
-              onChange={(e) => handleImageChange(e, 'image4')}
-            />
-          </div>
+            </div>
+          )}
 
-          {/* Image 5 */}
-          <div>
-            {data.image5 ? (
-              <img
-                src={URL.createObjectURL(data.image5)}
-                alt="Preview 5"
-                className="imgL cursor-pointer w-16 h-16"
-                onClick={() => inputRef5.current.click()}
+          {/* Image 5 (only for Default) */}
+          {!isTrending && (
+            <div>
+              {data.image5 ? (
+                <img
+                  src={URL.createObjectURL(data.image5)}
+                  alt="Preview 5"
+                  className="imgL cursor-pointer w-16 h-16"
+                  onClick={() => inputRefs[4].current.click()}
+                />
+              ) : (
+                <ImageIcon
+                  className="imgL cursor-pointer w-16 h-16"
+                  onClick={() => inputRefs[4].current.click()}
+                />
+              )}
+              <input
+                type="file"
+                accept="image/*"
+                ref={inputRefs[4]}
+                style={{ display: 'none' }}
+                onChange={(e) => handleImageChange(e, 'image5')}
               />
-            ) : (
-              <ImageIcon
-                className="imgL cursor-pointer w-16 h-16"
-                onClick={() => inputRef5.current.click()}
-              />
-            )}
-            <input
-              type="file"
-              accept="image/*"
-              ref={inputRef5}
-              style={{ display: 'none' }}
-              onChange={(e) => handleImageChange(e, 'image5')}
-            />
-          </div>
+            </div>
+          )}
         </div>
+
+        {/* Rest of the form fields */}
         <div className="grid grid-cols-2 gap-2">
           <div className="flex flex-col">
             <label htmlFor="title">Title</label>
@@ -286,7 +332,10 @@ const AddProduct = () => {
           ></textarea>
         </div>
 
-        <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-200 focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 focus:outline-none">
+        <button
+          type="submit"
+          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-200 focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 focus:outline-none"
+        >
           Add Product
         </button>
       </form>
