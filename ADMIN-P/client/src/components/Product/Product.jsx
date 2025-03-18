@@ -27,8 +27,19 @@ const Product = () => {
   };
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://reto-india-admin-backend.onrender.com/Product');
-      setProducts(response.data);
+      // Fetch data from the first endpoint
+      const productResponse = await axios.get('https://reto-india-admin-backend.onrender.com/Product');
+      const initialProducts = productResponse.data;
+  
+      // Fetch data from the second endpoint
+      const trendingResponse = await axios.get('https://reto-india-admin-backend.onrender.com/TrendingProduct');
+      const trendingProducts = trendingResponse.data;
+  
+      // Combine the data from both endpoints
+      const combinedProducts = [...initialProducts, ...trendingProducts];
+  
+      // Update the state with the combined data
+      setProducts(combinedProducts);
     } catch (error) {
       console.error('Error fetching data:', error);
     }

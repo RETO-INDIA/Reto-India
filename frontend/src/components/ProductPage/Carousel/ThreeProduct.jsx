@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoCartOutline, IoEyeOutline } from "react-icons/io5";
@@ -14,7 +15,7 @@ import './ThreeProduct.css';
 
 const MainCarousel = () => {
   const dispatch = useDispatch();
-
+  const [products, setProducts] = useState([]);
   const images = [
     { src: slider1, name: "Product 1", price: 100, id: 1 },
     { src: slider2, name: "Product 2", price: 150, id: 2 },
@@ -70,6 +71,21 @@ const MainCarousel = () => {
     toast("Item Added Successfully");
     dispatch(addToCart(product));
   };
+  const fetchData = async () => {
+    try {
+    
+      const trendingResponse = await axios.get('https://reto-india-admin-backend.onrender.com/TrendingProduct');
+      const trendingProducts = trendingResponse.data;
+
+      setProducts(trendingProducts);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="w-full p-5 banner-div">
@@ -78,12 +94,12 @@ const MainCarousel = () => {
         {/* Trending Product */}
       </h1>
       <Slider {...settings}>
-        {images.map((image, id) => (
-          <>
-           <div key={id} className="banner h-[430px]  p-[5px] overflow-hidden w-[93%] mx-auto cursor-pointer rounded-xl relative group">
+        {products.map((product,index) => (
+          <div key={index}>
+           <div  className="banner h-[430px]  p-[5px] overflow-hidden w-[93%] mx-auto cursor-pointer rounded-xl relative group">
               {/* Image */}
-              {image.src ? (
-                <img src={image.src} alt={image.name ? image.name : "Product Image"} className="banner-image w-full object-cover rounded-xl group-hover:scale-105 duration-300 ease-linear"/>) : (
+              {product.img1 ? (
+                <img src={`https://reto-india-admin-backend.onrender.com${product.image1}`} alt={product.title ? product.title : "Product Image"} className="banner-image w-full object-cover rounded-xl group-hover:scale-105 duration-300 ease-linear"/>) : (
                 <div className="w-full h-[450px] flex items-center justify-center bg-gray-300 text-gray-700 text-lg font-semibold rounded-xl">
                           No Image Available
                 </div>
@@ -113,7 +129,7 @@ const MainCarousel = () => {
               <h3 className="text-lg font-semibold">{image.name}</h3>
               <p className="text-sm text-gray-600">{image.price}</p>
             </div> */}
-          </>
+          </div>
         ))}
       </Slider>
     </div>
