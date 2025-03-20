@@ -8,6 +8,7 @@ body {
   background: linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%);
   color: #333;
   padding: 20px;
+  padding-bottom: 4rem;
 }
 
 h1,
