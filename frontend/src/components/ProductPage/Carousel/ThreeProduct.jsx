@@ -78,6 +78,7 @@ const MainCarousel = () => {
       const trendingProducts = trendingResponse.data;
 
       setProducts(trendingProducts);
+      console.log("Trending Products:", trendingProducts);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -98,7 +99,7 @@ const MainCarousel = () => {
           <div key={index}>
            <div  className="banner h-[430px]  p-[5px] overflow-hidden w-[93%] mx-auto cursor-pointer rounded-xl relative group">
               {/* Image */}
-              {product.img1 ? (
+              {product.image1 ? (
                 <img src={`https://reto-india-admin-backend.onrender.com${product.image1}`} alt={product.title ? product.title : "Product Image"} className="banner-image w-full object-cover rounded-xl group-hover:scale-105 duration-300 ease-linear"/>) : (
                 <div className="w-full h-[450px] flex items-center justify-center bg-gray-300 text-gray-700 text-lg font-semibold rounded-xl">
                           No Image Available
@@ -113,7 +114,7 @@ const MainCarousel = () => {
                   <IoEyeOutline className="cursor-pointer w-7 h-7" />
                   <IoCartOutline
                     className="cursor-pointer w-7 h-7"
-                    onClick={() => handleAddToCart(image)}
+                    onClick={() => handleAddToCart(product)}
                   />
                   <IoMdHeartEmpty className="cursor-pointer w-7 h-7" />
                 </div>

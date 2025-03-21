@@ -143,7 +143,7 @@ const Product = () => {
               <tr key={index} className="border-b hover:bg-gray-50">
                 <td className="py-3 px-4">
                   <img
-                    src={`https://reto-india-admin-backend.onrender.com${product.image1}`}
+                    src={product.image1}
                     alt="Product"
                     className="h-12 w-12 rounded-full object-cover cursor-pointer"
                     onClick={() => handleImageClick(product)} 
@@ -196,7 +196,7 @@ const Product = () => {
                       <img
                         src={
                           typeof update.image1 === "string"
-                            ? `https://reto-india-admin-backend.onrender.com:3000${update.image1}` // For existing image path
+                            ? update.image1 // For existing image path
                             : URL.createObjectURL(update.image1)     // For newly selected file
                         }
                         alt="Preview 1"
@@ -224,7 +224,7 @@ const Product = () => {
                       <img
                         src={
                           typeof update.image2 === "string"
-                            ? `https://reto-india-admin-backend.onrender.com${update.image2}` // For existing image path
+                            ? update.image2 // For existing image path
                             : URL.createObjectURL(update.image2)     // For newly selected file
                         }
                         alt="Preview 1"
@@ -252,7 +252,7 @@ const Product = () => {
                       <img
                         src={
                           typeof update.image3 === "string"
-                            ? `https://reto-india-admin-backend.onrender.com${update.image3}` // For existing image path
+                            ? update.image3 // For existing image path
                             : URL.createObjectURL(update.image3)     // For newly selected file
                         }
                         alt="Preview 1"
@@ -280,7 +280,7 @@ const Product = () => {
                       <img
                         src={
                           typeof update.image4 === "string"
-                            ? `https://reto-india-admin-backend.onrender.com${update.image4}` // For existing image path
+                            ? update.image4 // For existing image path
                             : URL.createObjectURL(update.image4)     // For newly selected file
                         }
                         alt="Preview 1"
@@ -308,7 +308,7 @@ const Product = () => {
                       <img
                         src={
                           typeof update.image5 === "string"
-                            ? `https://reto-india-admin-backend.onrender.com${update.image5}` // For existing image path
+                            ? update.image5 // For existing image path
                             : URL.createObjectURL(update.image5)     // For newly selected file
                         }
                         alt="Preview 1"
