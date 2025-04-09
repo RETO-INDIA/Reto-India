@@ -1,12 +1,12 @@
 import React from "react";
 import { IoBagHandle } from "react-icons/io5";
-
-import { FaCartShopping } from "react-icons/fa6";
+import { FaCartShopping, FaHeart } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 function Navbar() {
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const totalWishlist = useSelector((state) => state.wishlist.totalWishlist);
   const navigate = useNavigate();
 
   return (
@@ -17,14 +17,30 @@ function Navbar() {
           onClick={() => navigate("/order")}
         />
       </div>
+      {/* Cart Icon */}
       <div className="p-3 relative">
         <FaCartShopping
           className="md:text-3xl text-xl cursor-pointer"
           onClick={() => navigate("/cart")}
         />
-        <p className="absolute -top-1 -right-1 text-md md:text-xl ">
-          {totalQuantity}
-        </p>
+        {totalQuantity > 0 && (
+          <p className="absolute -top-1 -right-1 text-sm bg-red-600 text-white rounded-full px-1">
+            {totalQuantity}
+          </p>
+        )}
+      </div>
+
+      {/* Wishlist Icon */}
+      <div className="p-3 relative">
+        <FaHeart
+          className="md:text-3xl text-xl cursor-pointer"
+          onClick={() => navigate("/wishlistPage")}
+        />
+        {totalWishlist > 0 && (
+          <p className="absolute -top-1 -right-1 text-sm bg-pink-600 text-white rounded-full px-1">
+            {totalWishlist}
+          </p>
+        )}
       </div>
     </div>
   );

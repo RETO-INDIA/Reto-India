@@ -241,12 +241,25 @@ const CartPage = () => {
                 <NavLink to="/checkout">
                   {" "}
                   <button
+                    className={`w-full background text-black hover:scale-105 duration-200 ease-linear border-[1px] border-orange-200 bg-orange-200 hover:bg-orange-300 py-2 rounded-md mt-4 ${
+                      cartItems.length === 0 ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
+                    onClick={handleCheckout}
+                    disabled={cartItems.length === 0}
+                  >
+                    Checkout
+                  </button>
+                </NavLink>
+
+                {/* <NavLink to="/checkout">
+                  {" "}
+                  <button
                     className="w-full background text-black hover:scale-105 duration-200 ease-linear border-[1px] border-orange-200 bg-orange-200 hover:bg-orange-300 py-2 rounded-md mt-4"
                     onClick={handleCheckout}
                   >
                     Checkout
                   </button>
-                </NavLink>
+                </NavLink> */}
               </div>
             </div>
           </div>

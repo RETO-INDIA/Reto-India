@@ -4,11 +4,13 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import TitleUpdater from "../src/components/Title_Updater/title_updater";
 import MainLayout from "./components/Layout/MainLayout";
 import CartPersistence from "./components/CartPage/CartPersistence";
+import WishlistPersistence from "./components/WishlistPage/WishlistPersistence";
 import { AuthProvider } from "./Context/AuthContext";
 
 const LandingPage = lazy(() => import("./components/LandingPage/LandingPage"));
 const AboutUs = lazy(() => import("./components/About/AboutUs"));
 const CartPage = lazy(() => import("./components/CartPage/CartPage"));
+const WishlistPage = lazy(() => import("./components/WishlistPage/WishlistPage"));
 const CheckoutPage = lazy(() => import("./components/CheckOutPage/CheckoutPage"));
 const Contact = lazy(() => import("./components/Contact/Contact"));
 const Login = lazy(() => import("./components/Login_Signup_Page/Login"));
@@ -33,6 +35,7 @@ function App() {
         <AuthProvider>
         <TitleUpdater />
         <CartPersistence/>
+        <WishlistPersistence/>
         <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
           <Routes>
             <Route path="/" element={<MainLayout />}>
@@ -44,6 +47,7 @@ function App() {
               <Route path="product/:productId" element={<ProductView />} />
               <Route path="tracking" element={<TrackingPage />} />
               <Route path="cartPage" element={<CartPage />} />
+              <Route path="wishlistPage" element={<WishlistPage />} />
               <Route path="auth">
                 <Route path="login" element={<Login />} />
                 <Route path="signup" element={<Signup />} />

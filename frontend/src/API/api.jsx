@@ -117,6 +117,52 @@ export const loadCartFromDatabase = async () => {
   }
 };
 
+// Save wishlist to database
+export const saveWishlistToDatabase = async (wishlistItems) => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return null; // User not logged in
+    }
+
+    const response = await api.post(
+      "/save-wishlist",
+      { items: wishlistItems },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log('Save Wishlist To Database', response.data)
+    return response.data;
+  } catch (error) {
+    console.error("Error saving wishlist to database:", error);
+    return null;
+  }
+};
+
+// Load wishlist from database
+export const loadWishlistFromDatabase = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return null; // User not logged in
+    }
+
+    const response = await api.get("/load-wishlist", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log('Load wishlist To Database', response.data)
+    return response.data;
+  } catch (error) {
+    console.error("Error loading wishlist from database:", error);
+    return null;
+  }
+};
+
 export const createOrder = async (orderData) => {
   const response = await fetch(
     "https://reto-india-backend.onrender.com/create-order",

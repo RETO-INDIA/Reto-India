@@ -3,7 +3,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import XIcon from "@mui/icons-material/X";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 import "./LandingPage.css";
 
 const LandingPage = () => {

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { FaCartShopping } from "react-icons/fa6";
+import { FaCartShopping, FaHeart } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import "./AuthNavbar.css";
 import { resetCart } from "../../Redux/CartSlice";
+import { resetWishlist } from "../../Redux/WishlistSlice";
 
 const Navbar = () => {
   const { isLoggedIn, fullName, logout } = useAuth();
@@ -14,6 +15,7 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const totalWishlist = useSelector((state) => state.wishlist.totalWishlist);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -101,6 +103,16 @@ const Navbar = () => {
                       <FaCartShopping className="cart-icon" />
                       {totalQuantity > 0 && (
                         <span className="cart-badge">{totalQuantity}</span>
+                      )}
+                    </div>
+                  </NavLink>
+                </li>
+                <li className="cart-link">
+                  <NavLink to="/wishlistPage" onClick={handleNavLinkClick}>
+                    <div className="cart-icon-container">
+                      <FaHeart className="cart-icon" />
+                      {totalWishlist > 0 && (
+                        <span className="cart-badge">{totalWishlist}</span>
                       )}
                     </div>
                   </NavLink>

@@ -1,14 +1,15 @@
 import React from "react";
 import { AiFillStar } from "react-icons/ai";
-import { IoMdHeartEmpty } from "react-icons/io";
+import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import { IoCartOutline, IoEyeOutline } from "react-icons/io5";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
 import Slider from "react-slick";
 import { toast, ToastContainer } from "react-toastify";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { addToCart } from "../../../Redux/CartSlice";
+import { addToWishlist } from "../../../Redux/WishlistSlice";
 import LottieAnimation from "../../LottieAnimation/LottieAnimation";
 import LoadingAnimation from "../../../Lottie/Animation_Loading.json";
 
@@ -54,6 +55,17 @@ const ProductPage = ({ products = [], loading = false }) => {
     }
     toast.success("Item added to cart!");
     dispatch(addToCart(product));
+  };
+
+  const handleAddToWishlist = (product) => {
+    const authToken = localStorage.getItem("authToken");
+    if (!authToken) {
+      localStorage.setItem("redirectAfterLogin", window.location.pathname);
+      navigate("/auth/signup");
+      return;
+    }
+    toast.success("Wishlist Item Added!");
+    dispatch(addToWishlist(product));
   };
 
   const handleViewProduct = (product) => {
@@ -117,6 +129,7 @@ const ProductPage = ({ products = [], loading = false }) => {
           />
           <IoMdHeartEmpty 
             className="w-6 h-6 hover:text-white transition-colors cursor-pointer"
+            onClick={() => handleAddToWishlist(product)}
             aria-label="Add to wishlist"
           />
         </div>

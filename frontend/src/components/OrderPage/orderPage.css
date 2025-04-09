@@ -257,7 +257,7 @@
   }
 
   .cart-items-container {
-    width: 60%;
+    width: 100%;
     height: 600px;
   }
 
@@ -273,7 +273,7 @@
 
 @media (min-width: 1024px) {
   .cart-items-container {
-    width: 65%;
+    width: 100%;
   }
 
   .order-summary-container {

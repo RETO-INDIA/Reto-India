@@ -6,6 +6,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/CartSlice";
+import { addToWishlist } from "../../Redux/WishlistSlice"
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
@@ -31,6 +32,17 @@ const ProductView = () => {
     }
     toast.success("Item added to cart!");
     dispatch(addToCart(product));
+  };
+
+  const handleAddToWishlist = () => {
+    const authToken = localStorage.getItem("authToken");
+    if (!authToken) {
+      localStorage.setItem("redirectAfterLogin", window.location.pathname);
+      navigate("/auth/signup");
+      return;
+    }
+    toast.success("Wishlist Item Added");
+    dispatch(addToWishlist(product));
   };
 
   const handleBuyNow = () => {

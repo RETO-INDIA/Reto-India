@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
-import { FaCartShopping } from "react-icons/fa6";
+import { FaCartShopping , FaHeart } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ import ProgressBar from "./ProgressBar/ProgressBar";
 
 const Navbar = () => {
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const totalWishlist = useSelector((state) => state.wishlist.totalWishlist);
 
   const tl = useRef();
   useGSAP(() => {
@@ -87,6 +88,14 @@ const Navbar = () => {
               </p>
             </div>
           </Link>
+          <Link to="/wishlistPage">
+            <div className="rounded-full relative ">
+              <FaHeart className="text-xl cursor-pointer" />
+              <p className="absolute -top-3 -right-3 text-lg text-red-600 ">
+                {totalWishlist}
+              </p>
+            </div>
+          </Link>
           <i className="fa-solid fa-right-from-bracket lo-ut"></i>
 
           {/* <div className="w-full flex justify-end align-center p-5 px-10 fixed z-10"> */}
@@ -139,6 +148,12 @@ const Navbar = () => {
             </Link>
             <p className="absolute -top-3 -right-3 text-lg text-red-600 md-inline-block ">
               {totalQuantity}
+            </p>
+            <Link to="/wishlistPage">
+              <FaHeart className="text-xl cursor-pointer md-hidden" />
+            </Link>
+            <p className="absolute -top-3 -right-3 text-lg text-red-600 md-inline-block ">
+              {totalWishlist}
             </p>
           </div>
 

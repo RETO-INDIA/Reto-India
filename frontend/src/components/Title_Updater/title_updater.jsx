@@ -11,6 +11,7 @@ const TitleUpdater = () => {
       "/contact": "Contact - Reto India",
       "/product": "Products - Reto India",
       "/cartPage": "Your Cart - Reto India",
+      "/wishlist": "Your Wishlist - Reto India",
       "/tracking": "Track Order - Reto India",
       "/orderPage": "Your Orders - Reto India",
       "/payment": "Payment - Reto India",

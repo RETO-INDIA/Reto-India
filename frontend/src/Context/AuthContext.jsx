@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { loadCart, resetCart } from "../Redux/CartSlice";
+import { loadWishlist, resetWishlist } from "../Redux/WishlistSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom"; // Add this
 
@@ -19,6 +20,17 @@ export const AuthProvider = ({ children }) => {
       const savedCart = localStorage.getItem("cart");
       if (savedCart) {
         dispatch(loadCart(JSON.parse(savedCart)));
+      }
+    }
+  }, [dispatch]);
+
+   // Load wishlist from localStorage if token exists
+   useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      const savedWishlist = localStorage.getItem("wishlist");
+      if (savedWishlist) {
+        dispatch(loadWishlist(JSON.parse(savedWishlist)));
       }
     }
   }, [dispatch]);
@@ -66,6 +78,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("fullName"); // Updated to match key
     localStorage.removeItem("userId"); // Clear userId
     dispatch(resetCart()); // Reset cart state
+    dispatch(resetWishlist()); // Reset wishlist state
     // localStorage.removeItem("cart"); // Uncomment if you want to clear cart
     setIsLoggedIn(false);
     setFullName("");
